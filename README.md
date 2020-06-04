@@ -2,4 +2,5 @@
 
 __!under development!__
 
-This is a simple ray-tracing engine implemented in Rust from scratch (not [that](https://scratch.mit.edu/) scratch 😄).
+This is a simple ray-tracing engine implemented in Rust from scratch 
+(not <a href="https://scratch.mit.edu/" target="_blank">that</a> scratch 😄).
