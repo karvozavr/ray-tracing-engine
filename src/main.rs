@@ -1,11 +1,11 @@
-mod geometry;
+use color::Color;
+use ray::Ray;
+use vec3::Point3;
+use vec3::Vec3;
+
 mod color;
 mod ray;
-
-use geometry::vec3::Vec3;
-use color::Color;
-use crate::geometry::vec3::Point3;
-use crate::ray::Ray;
+mod vec3;
 
 fn main() {
     let aspect_ratio = 16.0 / 9.0;
@@ -39,6 +39,10 @@ fn main() {
 }
 
 fn ray_color(ray: &Ray) -> Color {
+    if hit_sphere(Point3::new(0.0, 0.0, -1.0), 0.5, ray) {
+        return Color::rgb(1.0, 0.0, 0.0)
+    };
+
     let unit_direction = ray.direction().unit();
     let t = 0.5 * (unit_direction.y() + 1.0); // normalize y coordinate
 
@@ -47,4 +51,13 @@ fn ray_color(ray: &Ray) -> Color {
 
     // lerp between white and blue depending on y coordinate of the ray/viewport intersection point
     (1.0 - t) * white + t * light_blue
+}
+
+fn hit_sphere(center: Point3, radius: f64, ray: &Ray) -> bool {
+    let oc = ray.origin() - center;
+    let a = ray.direction().dot(&ray.direction());
+    let b = 2.0 * oc.dot(&ray.direction());
+    let c = oc.dot(&oc) - radius * radius;
+    let discriminant = b * b - 4.0 * a * c;
+    discriminant > 0.0
 }
