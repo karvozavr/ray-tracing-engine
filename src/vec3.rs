@@ -29,7 +29,7 @@ impl Vec3 {
     }
 
     #[inline]
-    pub fn dot(&self, rhs: &Self) -> f64 {
+    pub fn dot(self, rhs: Self) -> f64 {
         dot(self, rhs)
     }
 
@@ -48,24 +48,28 @@ impl Vec3 {
         self / self.length()
     }
 
-    pub fn x(&self) -> f64 {
+    #[inline]
+    pub fn x(self) -> f64 {
         self.x
     }
 
-    pub fn y(&self) -> f64 {
+    #[inline]
+    pub fn y(self) -> f64 {
         self.y
     }
 
-    pub fn z(&self) -> f64 {
+    #[inline]
+    pub fn z(self) -> f64 {
         self.z
     }
 
+    #[inline]
     pub fn zero() -> Self {
         Vec3::new(0.0, 0.0, 0.0)
     }
 }
 
-pub fn dot(lhs: &Vec3, rhs: &Vec3) -> f64 {
+pub fn dot(lhs: Vec3, rhs: Vec3) -> f64 {
     lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z
 }
 
