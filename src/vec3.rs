@@ -91,9 +91,9 @@ impl Clone for Vec3 {
     }
 
     fn clone_from(&mut self, source: &Self) {
-       self.x = source.x.clone();
-       self.y = source.y.clone();
-       self.z = source.z.clone();
+        self.x = source.x.clone();
+        self.y = source.y.clone();
+        self.z = source.z.clone();
     }
 }
 
